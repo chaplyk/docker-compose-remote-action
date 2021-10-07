@@ -12,7 +12,7 @@ inputs:
     description: Remote host where docker is running
     required: true
   compose_file:
-    description: Docker compose filename. Default: docker-compose.yml
+    description: Docker compose filename.
     required: false
   force_recreate:
     description: Recreate containers even if compose file did not change
@@ -24,10 +24,10 @@ inputs:
     description: Build docker images before deploying
     required: false
   options:
-    description: Pass additional options to 'docker-compose up' command
+    description: Pass additional options to docker-compose
     required: false
   service:
-    description: Name of service to be deployed. Default: all services
+    description: Name of service to be deployed
     required: false
 runs:
   using: docker
