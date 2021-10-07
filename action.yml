@@ -1,0 +1,37 @@
+name: Docker Compose Remote Deploy
+author: Bohdan Chaplyk <bogdan.chaplyk@gmail.com>
+description: 'Deploy docker-compose with remote docker context'
+inputs:
+  ssh_key:
+    description: SSH private key used to connect to the docker host
+    required: true
+  ssh_user:
+    description: SSH user
+    required: true
+  ssh_host:
+    description: Remote host where docker is running
+    required: true
+  stack_filename:
+    description: Docker stack filename. Default: docker-compose.yml
+    required: false
+  force_recreate:
+    description: Recreate containers even if stack file did not change
+    required: false
+  pull:
+    description: Pull docker images before deploying
+    required: false
+  build:
+    description: Build docker images before deploying
+    required: false
+  options:
+    description: Pass additional options to 'docker-compose up' command
+    required: false
+  service:
+    description: Name of service to be deployed. Default: all services
+    required: false
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: anchor
+  color: blue
