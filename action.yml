@@ -11,11 +11,11 @@ inputs:
   ssh_host:
     description: Remote host where docker is running
     required: true
-  stack_filename:
-    description: Docker stack filename. Default: docker-compose.yml
+  compose_file:
+    description: Docker compose filename. Default: docker-compose.yml
     required: false
   force_recreate:
-    description: Recreate containers even if stack file did not change
+    description: Recreate containers even if compose file did not change
     required: false
   pull:
     description: Pull docker images before deploying

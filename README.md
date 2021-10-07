@@ -17,8 +17,20 @@ Better save it into repository secrets.
 ### `compose_file`
 *Optional.* Docker compose filename. Default: `docker-compose.yml`
 
+### `service`
+*Optional.* Name of service to be deployed. By default all services are deployed.
+
 ### `force_recreate`
-*Optional.* Recreate containers even if compose file did not change.
+*Optional.* Recreate containers even if compose file did not change. Default: false
+
+### `pull`
+*Optional.* Pull docker images before deploying. Default: false
+
+### `build`
+*Optional.* Build docker images before deploying. Default: false
+
+### `options`
+*Optional.* Pass additional options to docker-compose. For example: `--no-deps`
 
 ## Example usage
 
@@ -31,6 +43,7 @@ steps:
       ssh_host: 127.0.0.1
       ssh_user: username
       ssh_key: ${{ secrets.SSH_KEY }}
-      compose_file: 'docker-compose.yml'
-      
+      compose_file: docker-compose.yml
+      pull: true
+      build: true
 ```

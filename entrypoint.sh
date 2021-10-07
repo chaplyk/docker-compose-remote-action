@@ -2,23 +2,36 @@
 
 # check if required paramethers provided
 if [ -z "$INPUT_SSH_KEY" ]; then
-    echo "Input ssh_key is required!"
-    exit 1
+  echo "Input ssh_key is required!"
+  exit 1
 fi
 
 if [ -z "$INPUT_SSH_USER" ]; then
-    echo "Input ssh_user is required!"
-    exit 1
+  echo "Input ssh_user is required!"
+  exit 1
 fi
 
 if [ -z "$INPUT_SSH_HOST" ]; then
-    echo "Input ssh_host is required!"
-    exit 1
+  echo "Input ssh_host is required!"
+  exit 1
 fi
 
-# rename stack file if not docker-compose.yaml
-if ! [ -z "$INPUT_STACK_FILENAME" ]; then
-  mv $INPUT_STACK_FILENAME docker-compose.yaml
+# set correct values to paramethers
+if [ "$INPUT_BUILD" == 'true' ]; then
+  INPUT_BUILD='--build'
+else
+  INPUT_BUILD=''
+fi
+
+if [ "$INPUT_FORCE_RECREATE" == 'true' ]; then
+  INPUT_FORCE_RECREATE='--force-recreate'
+else
+  INPUT_FORCE_RECREATE=''
+fi
+
+# rename compose file if not docker-compose.yaml
+if ! [ -z "$INPUT_COMPOSE_FILE" ]; then
+  mv $INPUT_COMPOSE_FILE docker-compose.yaml
 fi
 
 # create private key and add it to authentication agent
