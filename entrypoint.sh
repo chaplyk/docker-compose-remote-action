@@ -35,6 +35,7 @@ if ! [ -z "$INPUT_COMPOSE_FILE" ]; then
 fi
 
 # create private key and add it to authentication agent
+mkdir -p $HOME/.ssh
 printf '%s\n' "$INPUT_SSH_KEY" > "$HOME/.ssh/private_key"
 chmod 600 "$HOME/.ssh/private_key"
 eval $(ssh-agent)
