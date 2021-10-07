@@ -46,7 +46,7 @@ docker context create remote --docker "host=ssh://$INPUT_SSH_USER@$INPUT_SSH_HOS
 docker context use remote
 
 # pull latest images if paramether provided
-if [ $INPUT_PULL = 'true' ]; then
+if [ $INPUT_PULL == 'true' ]; then
   docker-compose pull
 fi
 
