@@ -30,7 +30,7 @@ else
 fi
 
 # set INPUT_COMPOSE_FILE variable if not provided
-if ! [ -z "$INPUT_COMPOSE_FILE" ]; then
+if [ -z "$INPUT_COMPOSE_FILE" ]; then
   INPUT_COMPOSE_FILE='docker-compose.yml'
 fi
 
