@@ -38,7 +38,7 @@ Better save it into repository secrets.
 steps:
   # need checkout before using docker-compose-remote-action
   - uses: actions/checkout@v2
-  - uses: chaplyk/docker-compose-remote-action@v1.0.0
+  - uses: chaplyk/docker-compose-remote-action@v1
     with:
       ssh_host: 127.0.0.1
       ssh_user: username
