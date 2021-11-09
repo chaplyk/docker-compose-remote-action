@@ -29,9 +29,9 @@ else
   INPUT_FORCE_RECREATE=''
 fi
 
-# rename compose file if not docker-compose.yaml
+# set INPUT_COMPOSE_FILE variable if not provided
 if ! [ -z "$INPUT_COMPOSE_FILE" ]; then
-  mv $INPUT_COMPOSE_FILE docker-compose.yaml
+  INPUT_COMPOSE_FILE='docker-compose.yml'
 fi
 
 # create private key and add it to authentication agent
@@ -46,9 +46,9 @@ docker context create remote --docker "host=ssh://$INPUT_SSH_USER@$INPUT_SSH_HOS
 docker context use remote
 
 # pull latest images if paramether provided
-if [ $INPUT_PULL == 'true' ]; then
+if [ "$INPUT_PULL" == 'true' ]; then
   docker-compose pull
 fi
 
 # deploy stack
-docker-compose up -d $INPUT_BUILD $INPUT_FORCE_RECREATE $INPUT_OPTIONS $INPUT_SERVICE
+docker-compose -f $INPUT_COMPOSE_FILE up -d $INPUT_BUILD $INPUT_FORCE_RECREATE $INPUT_OPTIONS $INPUT_SERVICE

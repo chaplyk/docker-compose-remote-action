@@ -1,6 +1,6 @@
 # Docker Compose Remote Action
 
-This actions deploys your docker-compose stack file to remote host where docker-compose does not even has to be installed.
+This actions deploys your docker-compose stack file to remote host where docker-compose does not even have to be installed.
 
 ## Inputs
 
