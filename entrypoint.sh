@@ -52,3 +52,7 @@ fi
 
 # deploy stack
 docker-compose -f $INPUT_COMPOSE_FILE up -d $INPUT_BUILD $INPUT_FORCE_RECREATE $INPUT_OPTIONS $INPUT_SERVICE
+
+# cleanup context
+docker context use default 
+docker context rm remote
