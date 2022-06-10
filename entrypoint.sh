@@ -30,8 +30,17 @@ else
 fi
 
 # set INPUT_COMPOSE_FILE variable if not provided
-if [ -z "$INPUT_COMPOSE_FILE" ]; then
-  INPUT_COMPOSE_FILE='docker-compose.yml'
+if [ "$INPUT_COMPOSE_FILES" ]; then
+  filenames=$INPUT_COMPOSE_FILES
+  unset INPUT_COMPOSE_FILES
+  for filename in $filenames
+    do
+      INPUT_COMPOSE_FILES=$INPUT_COMPOSE_FILES" -f $filename"
+  done
+  unset filename
+  unset filenames
+else
+  INPUT_COMPOSE_FILES='-f docker-compose.yml'
 fi
 
 # create private key and add it to authentication agent
@@ -51,7 +60,7 @@ if [ "$INPUT_PULL" == 'true' ]; then
 fi
 
 # deploy stack
-docker-compose -f $INPUT_COMPOSE_FILE up -d $INPUT_BUILD $INPUT_FORCE_RECREATE $INPUT_OPTIONS $INPUT_SERVICE
+docker-compose $INPUT_COMPOSE_FILES up -d $INPUT_BUILD $INPUT_FORCE_RECREATE $INPUT_OPTIONS $INPUT_SERVICE
 
 # cleanup context
 docker context use default 

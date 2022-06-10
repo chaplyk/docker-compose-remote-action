@@ -14,8 +14,8 @@ SSH user on remote host
 SSH private key used to access to remote server. 
 Better save it into repository secrets.
 
-### `compose_file`
-*Optional.* Docker compose filename. Default: `docker-compose.yml`
+### `compose_files`
+*Optional.* Docker compose filenames. Mupliple files separated by space are allowed. See [Using multiple compose files](https://docs.docker.com/compose/extends/#multiple-compose-files) for explanation. Default: `docker-compose.yml`
 
 ### `service`
 *Optional.* Name of service to be deployed. By default all services are deployed.
