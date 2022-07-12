@@ -11,8 +11,8 @@ inputs:
   ssh_host:
     description: Remote host where docker is running
     required: true
-  compose_file:
-    description: Docker compose filename.
+  compose_files:
+    description: Docker compose filenames split by spaces
     required: false
   force_recreate:
     description: Recreate containers even if compose file did not change
