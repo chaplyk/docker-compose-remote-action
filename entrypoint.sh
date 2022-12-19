@@ -34,6 +34,11 @@ if [ -z "$INPUT_COMPOSE_FILE" ]; then
   INPUT_COMPOSE_FILE='docker-compose.yml'
 fi
 
+# set INPUT_SSH_PORT variable if not provided
+if [ -z "$INPUT_SSH_PORT" ]; then
+  INPUT_SSH_PORT=22
+fi
+
 # create private key and add it to authentication agent
 mkdir -p $HOME/.ssh
 printf '%s\n' "$INPUT_SSH_KEY" > "$HOME/.ssh/private_key"
@@ -42,7 +47,7 @@ eval $(ssh-agent)
 ssh-add "$HOME/.ssh/private_key"
 
 # create remote context in docker and switch to it
-docker context create remote --docker "host=ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST"
+docker context create remote --docker "host=ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST:INPUT_SSH_PORT"
 docker context use remote
 
 # pull latest images if paramether provided
