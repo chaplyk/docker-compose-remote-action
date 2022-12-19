@@ -47,7 +47,7 @@ eval $(ssh-agent)
 ssh-add "$HOME/.ssh/private_key"
 
 # create remote context in docker and switch to it
-docker context create remote --docker "host=ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST:INPUT_SSH_PORT"
+docker context create remote --docker "host=ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST:$INPUT_SSH_PORT"
 docker context use remote
 
 # pull latest images if paramether provided
