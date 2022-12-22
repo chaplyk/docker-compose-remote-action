@@ -7,6 +7,9 @@ This actions deploys your docker-compose stack file to remote host where docker-
 ### `ssh_host`
 Remote host where docker is running
 
+### `ssh_port`
+SSH port on remote host
+
 ### `ssh_user`
 SSH user on remote host
 
