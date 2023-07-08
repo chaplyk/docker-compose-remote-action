@@ -62,7 +62,7 @@ docker context use remote
 
 # pull latest images if paramether provided
 if [ "$INPUT_PULL" == 'true' ]; then
-  docker-compose -p $INPUT_PROJECT_NAME pull
+  docker-compose -p $INPUT_PROJECT_NAME pull $INPUT_SERVICE
 fi
 
 # deploy stack
