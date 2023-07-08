@@ -16,6 +16,11 @@ if [ -z "$INPUT_SSH_HOST" ]; then
   exit 1
 fi
 
+if [ -z "$INPUT_KNOWN_HOST_KEY" ]; then
+  echo "Input known_host_key is required!"
+  exit 1
+fi
+
 # set correct values to paramethers
 if [ "$INPUT_BUILD" == 'true' ]; then
   INPUT_BUILD='--build'
@@ -39,8 +44,12 @@ if [ -z "$INPUT_SSH_PORT" ]; then
   INPUT_SSH_PORT=22
 fi
 
-# create private key and add it to authentication agent
 mkdir -p $HOME/.ssh
+
+# add host to known hosts
+echo $INPUT_KNOWN_HOST_KEY > "$HOME/.ssh/known_hosts"
+
+# create private key and add it to authentication agent
 printf '%s\n' "$INPUT_SSH_KEY" > "$HOME/.ssh/private_key"
 chmod 600 "$HOME/.ssh/private_key"
 eval $(ssh-agent)

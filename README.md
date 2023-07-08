@@ -7,6 +7,10 @@ This actions deploys your docker-compose stack file to remote host where docker-
 ### `ssh_host`
 Remote host where docker is running
 
+### `known_host_key`
+Remote host key information for `known_hosts` file
+Example: `"170.64.163.217 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAABIKvgeZ/twOBTN2B2MY/f931XhbW0p0zXjBZgL+R1IW7D"`
+
 ### `ssh_port`
 SSH port on remote host
 
@@ -44,6 +48,7 @@ steps:
   - uses: chaplyk/docker-compose-remote-action@v1.1
     with:
       ssh_host: 127.0.0.1
+      known_host_key: ${{ secrets.KNOWN_HOST_KEY }}
       ssh_user: username
       ssh_key: ${{ secrets.SSH_KEY }}
       compose_file: docker-compose.yml

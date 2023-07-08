@@ -11,6 +11,9 @@ inputs:
   ssh_host:
     description: Remote host where docker is running
     required: true
+  known_host_key:
+    description: Remote host information for "known_host" file
+    required: true
   ssh_port:
     description: Remote port to use, defaults at 22
     required: false
