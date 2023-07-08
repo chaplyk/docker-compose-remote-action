@@ -2,6 +2,9 @@ name: Docker Compose Remote Deploy
 author: Bohdan Chaplyk <bogdan.chaplyk@gmail.com>
 description: 'Deploy docker-compose with remote docker context'
 inputs:
+  project_name:
+    description: Project name of the compose project
+    required: true
   ssh_key:
     description: SSH private key used to connect to the docker host
     required: true

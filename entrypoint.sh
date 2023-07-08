@@ -1,6 +1,12 @@
 #!/bin/sh
 
 # check if required paramethers provided
+if [ -z "$INPUT_PROJECT_NAME" ]; then
+  echo "Input project_name is required!"
+  exit 1
+fi
+
+# check if required paramethers provided
 if [ -z "$INPUT_SSH_KEY" ]; then
   echo "Input ssh_key is required!"
   exit 1
@@ -34,11 +40,6 @@ else
   INPUT_FORCE_RECREATE=''
 fi
 
-# set INPUT_COMPOSE_FILE variable if not provided
-if [ -z "$INPUT_COMPOSE_FILE" ]; then
-  INPUT_COMPOSE_FILE='docker-compose.yml'
-fi
-
 # set INPUT_SSH_PORT variable if not provided
 if [ -z "$INPUT_SSH_PORT" ]; then
   INPUT_SSH_PORT=22
@@ -61,11 +62,11 @@ docker context use remote
 
 # pull latest images if paramether provided
 if [ "$INPUT_PULL" == 'true' ]; then
-  docker-compose -f $INPUT_COMPOSE_FILE pull
+  docker-compose -p $INPUT_PROJECT_NAME pull
 fi
 
 # deploy stack
-docker-compose -f $INPUT_COMPOSE_FILE up -d $INPUT_BUILD $INPUT_FORCE_RECREATE $INPUT_OPTIONS $INPUT_SERVICE
+docker-compose -p $INPUT_PROJECT_NAME up -d $INPUT_BUILD $INPUT_FORCE_RECREATE $INPUT_OPTIONS $INPUT_SERVICE
 
 # cleanup context
 docker context use default 

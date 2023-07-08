@@ -4,6 +4,9 @@ This actions deploys your docker-compose stack file to remote host where docker-
 
 ## Inputs
 
+### `project_name`
+Project name of the compose project
+
 ### `ssh_host`
 Remote host where docker is running
 
@@ -47,11 +50,11 @@ steps:
   - uses: actions/checkout@v2
   - uses: chaplyk/docker-compose-remote-action@v1.1
     with:
+      project_name: projectX
       ssh_host: 127.0.0.1
       known_host_key: ${{ secrets.KNOWN_HOST_KEY }}
       ssh_user: username
       ssh_key: ${{ secrets.SSH_KEY }}
-      compose_file: docker-compose.yml
       pull: true
       build: true
 ```
